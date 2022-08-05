@@ -1,7 +1,7 @@
 # Docker good practices
 
 ## Ignore huge unuse files and folders by `.dockerignore`
-We usually have the `COPY . /` step which copies the working directory to the images. In some cases, there are some vast files and folders which we don't really need it. These files and folders are better to be in the `.dockerignore` file. For more information: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+We usually have the `COPY . /` step which copies the working directory to the images. In some cases, there are some vast files and folders which we don't really need it. These files and folders are better to be in the `.dockerignore` file.
 For more information: https://docs.docker.com/engine/reference/builder/#dockerignore-file
 ## Using Dockerfile linting tool(s)
 Similar to the lint in development EG: `rubocop, eslint`,... Dockerfile also has linter tool which is [Hadolint](https://github.com/hadolint/hadolint)
