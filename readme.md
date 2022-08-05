@@ -19,14 +19,18 @@ Docker only creates a thin layer on top of the image, and the rest of it can be 
 setting the `--chown=nobody:nogroup`, we don't only need to copy the working directory only once
 ## Separate the install dependency step
 ```
-COPY app/Gemfile /app/Gemfile
-COPY app/Gemfile.lock /app/Gemfile.lock
+COPY app/Gemfile app/Gemfile.lock /app/
 RUN bundle install --gemfile ./app/Gemfile
 ```
 Each step in the Docker image is a layer already cached when we build the docker image. By separating the install
 dependencies step, we don't need to install dependencies every time we update the code
 ## Use Docker Buildkit cache mount
-
+```
+ENV BUNDLE_PATH=/bundler
+RUN mkdir /bundler
+COPY app/Gemfile app/Gemfile.lock /app/
+RUN --mount=type=cache,target=/bundler ls -la /bundler/cache; bundle install --gemfile ./app/Gemfile
+```
 ## Mutli stages
 
 ## References
