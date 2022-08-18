@@ -31,7 +31,18 @@ RUN mkdir /bundler
 COPY app/Gemfile app/Gemfile.lock /app/
 RUN --mount=type=cache,target=/bundler ls -la /bundler/cache; bundle install --gemfile ./app/Gemfile
 ```
+
+### [Buildkit](https://github.com/moby/buildkit):
+- The component that the core of Docker building image support
+- Originally from Docker
+- Docker's latest version already uses Buildkit to build images by default
+
+### Cache mount
+- The functionality is similar to installing all dependencies to separate disk and mounting it whenever we want toreuse it. When finished building, it closes the disks and uploads the image to the registry. the cached data is already onthe builder(Docker)
+- Possible to export the cache file to another host
+- ? retention
 ## Multi stages
+Docker only pushes the last from to registry, which reduces the space, but the building time is still the same.
 ```dockerfile
 # v1
 FROM golang:1.18.2-alpine3.14

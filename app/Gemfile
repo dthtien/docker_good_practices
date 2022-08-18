@@ -8,6 +8,9 @@ ruby '3.0.0'
 
 gem 'byebug'
 gem 'dry-monads'
-gem 'dwf', '~> 0.1.12'
+gem 'gush'
+
+# gem 'dwf', '~> 0.1.12'
 gem 'nokogiri', '~> 1.13', '>= 1.13.8'
 gem 'rails'
+gem 'sinatra'
